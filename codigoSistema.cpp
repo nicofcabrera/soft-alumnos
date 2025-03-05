@@ -16,12 +16,43 @@ void leerArchivos();
 void agregarAlumnos();
 
 int main(){
-//ss
 	
+	int opcion;
+	bool bandera = true;
+	
+	//do{
+		cout<<"Sistema Alumnos"<<endl;
+		cout<<"\n1. Generar lista Alumnos"<<endl;
+		cout<<"2. Ver listado Alumnos"<<endl;
+		cout<<"3. Agregar Alumno"<<endl;
+		cout<<"4. Instrucciones"<<endl;
+		cout<<"5. Salir"<<endl;
+		cout<<"\nElige una opcion [1-6]: ";
+		cin>>opcion;
+		
+		switch(opcion){
+			case 1:
+				escribirArchivo();
+				bandera = false;
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;				
+		}
+	//}while(bandera);
+
+	//saludar();
 	//escribirArchivo();
 	//leerArchivos();
 	//comandosTerminal();
-	agregarAlumnos();
+	//agregarAlumnos();
 	//getch();
 	
 	
@@ -48,7 +79,7 @@ void comandosTerminal(){
 //Escribiendo archivo
 void escribirArchivo(){
 	ofstream archivo; // OFSTREAM para crear el archivo y escribir en él. Output
-	string nombreArchivo, dato;
+	string nombreArchivo;
 	//string ruta = "C://Archivos Sistema Alumnos ISET//";
 	string ruta = "prueba//";
 	string alumnos[100];
@@ -58,14 +89,14 @@ void escribirArchivo(){
 	if(!mkdir(ruta.c_str())){
 		mkdir(ruta.c_str());
 	}
-
 	//Interacción con el usuario - Nombre del archivo
 	cout<<"Coloque el nombre del archivo: ";
+	cin.ignore();
 	getline(cin,nombreArchivo);
+	//getline(cin,nombreArchivo);
 	
 	ruta = ruta + nombreArchivo + ".txt"; // Concatenación
 	archivo.open(ruta.c_str(), ios::out); // Creación del archivo, parsear los datos del usuario y grabarlo.
-	
 	// Condicional de falla
 	if(archivo.fail()){ 
 		cout<<"ERROR. No se pudo crear el archivo.";
@@ -73,11 +104,12 @@ void escribirArchivo(){
 	}
 	
 	// Interaccion con el usuario - Creacion de la lista enumerada
-	cout<<"Ingresar la cantidad de alumnos a registrar"<<endl;
+	cout<<"\nIngresar la cantidad de alumnos a registrar"<<endl;
 	cin>>cAlum;
-	cout<<"\nDigite el alumno uno por uno:"<<endl;
+	cout<<"Digite el alumno uno por uno:"<<endl;
 	
-	for(int i= 0; i<=cAlum; i++){
+	cin.ignore();
+	for(int i= 0; i<cAlum; i++){
 		getline(cin,alumnos[i]);
 		archivo<<i<<"_"<<alumnos[i]<<endl;
 	}

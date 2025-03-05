@@ -1,22 +1,35 @@
 #include <iostream>
 // El usuario siempre decide SALIR de la APP.
 using namespace std;
-void saludar (){
+
+/*void saludar (){
 	int opcion;
+	bool bandera = true;
 	
-	cout<<"Menu Alumnos"<<endl;
-	cout<<"\n1. Generar lista Alumnos"<<endl;
-	cout<<"2. Ver listado Alumnos"<<endl;
-	cout<<"3. Agregar Alumno"<<endl;
-	cout<<"4. Quitar Alumno"<<endl; // no se si  puedo quitar
-	cout<<"5. Instrucciones"<<endl;
-	cout<<"6. Salir"<<endl;
-	//
-	cout<<"\n Elige una opcion [1-6]: ";
-	cin>>opcion;
-	//cout<<"\nElegiste el "<<opcion;
-	
-	if(opcion < 1 || opcion > 6){
-		cout<<"La opcion elegida no es correcta";
-	}
-}
+	do{
+		cout<<"Sistema Alumnos"<<endl;
+		cout<<"\n1. Generar lista Alumnos"<<endl;
+		cout<<"2. Ver listado Alumnos"<<endl;
+		cout<<"3. Agregar Alumno"<<endl;
+		cout<<"4. Instrucciones"<<endl;
+		cout<<"5. Salir"<<endl;
+		cout<<"\n Elige una opcion [1-6]: ";
+		cin>>opcion;
+		
+		switch(opcion){
+			case 1:
+				//escribirArchivo();
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;				
+		}
+	}while(bandera)
+}*/
