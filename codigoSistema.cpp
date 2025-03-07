@@ -1,28 +1,47 @@
 #include <iostream>
 #include <conio.h> // Pausar sistema
-#include "miLibreria.h" // Libreria Propia
+#include "funcionesArchivos.h" //Libreria Propias
+#include <stdlib.h>	
 //#include <fstream> // Archivos
 //#include <string.h> // Libreria para uso de string varios
 //#include <direct.h> //Crear directorios mkdir
+#include<ctime>
 
 using namespace std;
 
-//void saludar();
+//void saludar();ss
 
 // # Prototipos
 void comandosTerminal();
 void escribirArchivo();
 void leerArchivos();
 void agregarAlumnos();
+bool vueltaAlMenu();
+void limpiarConsola();
 void menu();
 
+
 int main(){
+	// Logitud de un array estatico - PROBAR EN ARCHIVOS
+	int array[] = {1,2,3,4,5,22,54};
+	int longitud = sizeof(array) / sizeof(array[0]);
+	cout<<longitud;
+	getch();
 	
-	menu();
+	//Obtencion de fecha - PROBAR METODO.
+	// Get the timestamp for the current date and time
+//time_t timestamp;
+//time(&timestamp);
+
+// Display the date and time represented by the timestamp
+//cout << ctime(&timestamp);
+//getch();
+	
+	//menu();
 
 	return 0;
 }
-//ss
+//ssssssssssssssssss
 // Funcion MENU
 void menu(){
 	bool bandera = true;
@@ -42,15 +61,15 @@ void menu(){
 	switch(opcion){
 		case 1:
 			escribirArchivo();
-			bandera = false;
+			bandera = vueltaAlMenu();
 			break;
 		case 2:
 			leerArchivos();
-			bandera = false;
+			bandera = vueltaAlMenu();
 			break;
 		case 3:
 			agregarAlumnos();
-			bandera = false;
+			bandera = vueltaAlMenu();
 			break;
 		case 4:
 			break;
@@ -60,14 +79,38 @@ void menu(){
 			break;			
 		default:
 		cout<<"\nEl dato ingresado no es correcto, intenta otra vez."<<endl;
+		cout<<"Presiona ENTER para continuar.";
+		getch();
+		limpiarConsola();
 	}
 	}while(bandera);
 	
-	
-	
 }
 
+bool vueltaAlMenu(){
+	int opcion;
+	bool bandera;
+	cout<<"\nDesea volver al menu principal? "<<endl;
+	cout<<"1.Si      2.No"<<endl;
+	cout<<"Elija una opcion[1 - 2]: ";
+	cin>>opcion;
+	
+	
+	if(opcion == 1){
+		bandera = true;
+			limpiarConsola();
+	} else{
+		bandera = false;
+		cout<<"\nGracias por usar el sistema";
+	}
+	
+	return bandera;
+}
 
+//Limpiar consola
+void limpiarConsola(){
+	system("cls");
+}
 
 
 

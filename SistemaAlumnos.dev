@@ -61,7 +61,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=miLibreria.h
+FileName=funcionesArchivos.h
 CompileCpp=1
 Folder=
 Compile=1
