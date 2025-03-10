@@ -1,84 +1,83 @@
 #include <iostream>
 #include <conio.h> // Pausar sistema
-#include "funcionesArchivos.h" //Libreria Propias
+//#include "libFecha.h" //
+#include "libGotoxy.h" // Libreria propia para manejo de gotoxy
+#include "funcionesArchivos.h" //Libreria propia para manejo de archivos
+#include <windows.h>
 #include <stdlib.h>	
+//#include <sstream>ssssssssssssssssssss
+//#include <string>ssss
 //#include <fstream> // Archivos
 //#include <string.h> // Libreria para uso de string varios
 //#include <direct.h> //Crear directorios mkdir
-#include<ctime>
+
+
 
 using namespace std;
 
-//void saludar();ss
-
 // # Prototipos
-void comandosTerminal();
-void escribirArchivo();
-void leerArchivos();
-void agregarAlumnos();
-bool vueltaAlMenu();
+bool vueltaAlMenu(int a);
 void limpiarConsola();
 void menu();
 
-
 int main(){
-	// Logitud de un array estatico - PROBAR EN ARCHIVOS
-	int array[] = {1,2,3,4,5,22,54};
-	int longitud = sizeof(array) / sizeof(array[0]);
-	cout<<longitud;
+    
+	menu();	
+
 	getch();
-	
-	//Obtencion de fecha - PROBAR METODO.
-	// Get the timestamp for the current date and time
-//time_t timestamp;
-//time(&timestamp);
-
-// Display the date and time represented by the timestamp
-//cout << ctime(&timestamp);
-//getch();
-	
-	//menu();
-
+		
 	return 0;
 }
-//ssssssssssssssssss
+
+
+
+
+
 // Funcion MENU
 void menu(){
 	bool bandera = true;
+	int a ;
 	
 	do{
 	int opcion;
 	
-	cout<<"Sistema Alumnos"<<endl;
-	cout<<"\n1. Generar lista Alumnos"<<endl;
+	definicionCuadroInicio();
+	
+	gotoxy(20,8);
+	cout<<"1. Generar lista Alumnos";
+	gotoxy(20,9);
 	cout<<"2. Ver listado Alumnos"<<endl;
+	gotoxy(20,10);
 	cout<<"3. Agregar Alumno"<<endl;
-	cout<<"4. Instrucciones"<<endl;
-	cout<<"5. Salir"<<endl;
-	cout<<"\nElige una opcion [1-6]: ";
+	gotoxy(20,11);
+	cout<<"4. Salir"<<endl;
+	gotoxy(18,14);
+	cout<<"Elige una opcion [1-6]: ";
 	cin>>opcion;
 	
 	switch(opcion){
 		case 1:
-			escribirArchivo();
-			bandera = vueltaAlMenu();
+			a = escribirArchivo();
+			bandera = vueltaAlMenu(a);
+			getch();
 			break;
 		case 2:
 			leerArchivos();
-			bandera = vueltaAlMenu();
+			//bandera = vueltaAlMenu();s
 			break;
 		case 3:
 			agregarAlumnos();
-			bandera = vueltaAlMenu();
+			//bandera = vueltaAlMenu();
 			break;
 		case 4:
-			break;
-		case 5:
-			cout<<"\nHas finalizado el uso del sistema."<<endl;
+			gotoxy(16,18);
+			cout<<"Has finalizado el uso del sistema."<<endl;
 			bandera = false;
 			break;			
 		default:
-		cout<<"\nEl dato ingresado no es correcto, intenta otra vez."<<endl;
+		gotoxy(15,16);
+		cout<<"El dato ingresado no es correcto, intenta otra vez."<<endl;
+		gotoxy(15,17);
 		cout<<"Presiona ENTER para continuar.";
 		getch();
 		limpiarConsola();
@@ -87,31 +86,40 @@ void menu(){
 	
 }
 
-bool vueltaAlMenu(){
+//Funcion para volver al menu
+bool vueltaAlMenu(int a){
 	int opcion;
 	bool bandera;
-	cout<<"\nDesea volver al menu principal? "<<endl;
-	cout<<"1.Si      2.No"<<endl;
-	cout<<"Elija una opcion[1 - 2]: ";
-	cin>>opcion;
-	
-	
-	if(opcion == 1){
-		bandera = true;
+	while(true){
+		gotoxy(18,a+2);
+		cout<<"Desea volver al menu principal? "<<endl;
+		gotoxy(18,a+3);
+		cout<<"	1.Si      2.No"<<endl;
+		gotoxy(18,a+4);
+		cout<<"Elija una opcion[1 - 2]: ";
+		cin>>opcion;	
+		
+		if(opcion == 1){
+			bandera = true;
 			limpiarConsola();
-	} else{
-		bandera = false;
-		cout<<"\nGracias por usar el sistema";
+			break;
+		} else if(opcion == 2){
+			bandera = false;
+			gotoxy(18,a+6);
+			cout<<"Gracias por usar el sistema";
+			break;
+		} else{
+			cout<<"\nEl digito ingresado no es correcto.";
+			getch();
+			limpiarConsola();
+		}
 	}
-	
 	return bandera;
 }
 
 //Limpiar consola
 void limpiarConsola(){
 	system("cls");
+
 }
-
-
-
 	

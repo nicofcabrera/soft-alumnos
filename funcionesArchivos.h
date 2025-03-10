@@ -2,8 +2,13 @@
 #include <fstream> // Archivos
 #include <string.h> // Libreria para uso de string varios
 #include <direct.h> //Crear directorios mkdir
+#include "libFecha.h" //Libreria propia incluye funcionalidad de obtener fecha.
+#include "libGotoxy.h" //Libreria propia para el manejo de gotoxy
 
 using namespace std;
+
+string obtenerFecha();
+void gotoxy(int x, int y);
 
 /*
 Libreria .h para el manejo de funciones de Archivos: Escritura, Leer y Edicion.
@@ -22,7 +27,9 @@ void comandosTerminal(){
 }
 
 //Escribiendo archivo
-void escribirArchivo(){
+int escribirArchivo(){
+	system("cls");
+	definicionCuadroInicio();
 	ofstream archivo; // OFSTREAM para crear el archivo y escribir en él. Output
 	string nombreArchivo;
 	string ruta = "Archivos generados//";
@@ -34,6 +41,7 @@ void escribirArchivo(){
 		mkdir(ruta.c_str());
 	}
 	//Interacción con el usuario - Nombre del archivo
+	gotoxy(18,8);
 	cout<<"Coloque el nombre del archivo: ";
 	cin.ignore();
 	getline(cin,nombreArchivo);
@@ -46,25 +54,41 @@ void escribirArchivo(){
 		exit(1);
 	}
 	
+	// Escribo fecha de creacion del archivo.
+	archivo<<obtenerFecha()<<endl;
+	archivo<<"\n";
+	
 	// Interaccion con el usuario - Creacion de la lista enumerada
-	cout<<"\nIngresar la cantidad de alumnos a registrar"<<endl;
+	gotoxy(18,9);
+	cout<<"Cantidad de alumnos a registrar: ";
 	cin>>cAlum;
+	gotoxy(18,10);
 	cout<<"Digite el alumno uno por uno:"<<endl;
 	
 	cin.ignore();
+	int valorI = 0;
 	for(int i= 0; i<cAlum; i++){
+		gotoxy(18,12+i);
 		getline(cin,alumnos[i]);
 		archivo<<alumnos[i]<<endl;
+		valorI = valorI + i;
 	}
-	
-	cout<<"\nAgregados exitosamente"<<endl;
+	valorI++;
+	valorI = valorI + 12;
+	gotoxy(18,valorI+1);
+	//cout<<valorI;
+	cout<<"Agregados exitosamente"<<endl;
 	
 	//Finalización de la carga de informacion al archivo
 	archivo.close();
+	
+	return valorI+1;
 }
 
 //##LECTURA DE ARCHIVOS
 void leerArchivos(){
+	cout<<"\nVisualizando archivos"<<endl;
+	cout<<"\n";
 	comandosTerminal();
 	
 	ifstream archivo; // Lectura de un archivo. I-> Input
@@ -73,6 +97,7 @@ void leerArchivos(){
 	string ruta = "Archivos generados//";
 	string extension = ".txt";	
 	string archivoSeleccionado;
+	
 	
 	cout<<"\nEscriba el archivo que desea abrir: ";
 	cin.ignore();
