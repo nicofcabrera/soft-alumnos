@@ -1,4 +1,7 @@
 #include "libGotoxy.h"
+#include <windows.h>
+
+using namespace std;
 
 
 void gotoxy(int x, int y){
@@ -10,7 +13,7 @@ void gotoxy(int x, int y){
 }
 
 
-//FUNCION QUE DIBUJA EL CUADRO
+//Funcion que dibuja el cuadro
 void dibujarCuadro(int x1,int y1,int x2,int y2){
 	int i;
 	

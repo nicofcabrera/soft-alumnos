@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = codigoSistema.o libGotoxy.o
-LINKOBJ  = codigoSistema.o libGotoxy.o
+OBJ      = codigoSistema.o libGotoxy.o funcionesArchivos.o libFecha.o
+LINKOBJ  = codigoSistema.o libGotoxy.o funcionesArchivos.o libFecha.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++"
@@ -29,3 +29,9 @@ codigoSistema.o: codigoSistema.cpp
 
 libGotoxy.o: libGotoxy.cpp
 	$(CPP) -c libGotoxy.cpp -o libGotoxy.o $(CXXFLAGS)
+
+funcionesArchivos.o: funcionesArchivos.cpp
+	$(CPP) -c funcionesArchivos.cpp -o funcionesArchivos.o $(CXXFLAGS)
+
+libFecha.o: libFecha.cpp
+	$(CPP) -c libFecha.cpp -o libFecha.o $(CXXFLAGS)

@@ -1,46 +1,34 @@
 #include <iostream>
 #include <conio.h> // Pausar sistema
-//#include "libFecha.h" //
-#include "libGotoxy.h" // Libreria propia para manejo de gotoxy
+#include "libGotoxy.h" // Libreria propia para manejoss de gotoxy
 #include "funcionesArchivos.h" //Libreria propia para manejo de archivos
-#include <windows.h>
-#include <stdlib.h>	
-//#include <sstream>ssssssssssssssssssss
-//#include <string>ssss
-//#include <fstream> // Archivos
-//#include <string.h> // Libreria para uso de string varios
-//#include <direct.h> //Crear directorios mkdir
-
+#include <windows.h> // Manejo funciones propias de windows
+#include <stdlib.h>	 // Manejo funciones
 
 
 using namespace std;
 
 // # Prototipos
-bool vueltaAlMenu(int a);
+bool vueltaAlMenu();
 void limpiarConsola();
 void menu();
 
 int main(){
-    
+	
 	menu();	
 
-	getch();
-		
+	getch();	
 	return 0;
 }
 
-
-
-
-
 // Funcion MENU
 void menu(){
+
 	bool bandera = true;
-	int a ;
 	
 	do{
 	int opcion;
-	
+	limpiarConsola();
 	definicionCuadroInicio();
 	
 	gotoxy(20,8);
@@ -52,22 +40,22 @@ void menu(){
 	gotoxy(20,11);
 	cout<<"4. Salir"<<endl;
 	gotoxy(18,14);
-	cout<<"Elige una opcion [1-6]: ";
+	cout<<"Elige una opcion [1-4]: ";
 	cin>>opcion;
 	
 	switch(opcion){
 		case 1:
-			a = escribirArchivo();
-			bandera = vueltaAlMenu(a);
-			getch();
+			escribirArchivo();
+			bandera = vueltaAlMenu();
+			//sgetch();sssssss
 			break;
 		case 2:
 			leerArchivos();
-			//bandera = vueltaAlMenu();s
+			bandera = vueltaAlMenu();
 			break;
 		case 3:
 			agregarAlumnos();
-			//bandera = vueltaAlMenu();
+			bandera = vueltaAlMenu();
 			break;
 		case 4:
 			gotoxy(16,18);
@@ -87,15 +75,18 @@ void menu(){
 }
 
 //Funcion para volver al menu
-bool vueltaAlMenu(int a){
+bool vueltaAlMenu(){
+	
+	limpiarConsola();
+	definicionCuadroInicio();
 	int opcion;
 	bool bandera;
 	while(true){
-		gotoxy(18,a+2);
+		gotoxy(18,8);
 		cout<<"Desea volver al menu principal? "<<endl;
-		gotoxy(18,a+3);
+		gotoxy(18,9);
 		cout<<"	1.Si      2.No"<<endl;
-		gotoxy(18,a+4);
+		gotoxy(18,10);
 		cout<<"Elija una opcion[1 - 2]: ";
 		cin>>opcion;	
 		
@@ -105,11 +96,12 @@ bool vueltaAlMenu(int a){
 			break;
 		} else if(opcion == 2){
 			bandera = false;
-			gotoxy(18,a+6);
+			gotoxy(18,12);
 			cout<<"Gracias por usar el sistema";
 			break;
 		} else{
-			cout<<"\nEl digito ingresado no es correcto.";
+			gotoxy(18,12);
+			cout<<"El digito ingresado no es correcto.";
 			getch();
 			limpiarConsola();
 		}
